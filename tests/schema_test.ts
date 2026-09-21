@@ -1,0 +1,1 @@
+import{assert,assertRejects}from"./_assert.ts";import{scriptId}from"../src/tools/common.ts";Deno.test("malformed IDs rejected",async()=>{assert(scriptId.safeParse("1Abc_DEF-123456789").success);await assertRejects(()=>scriptId.parse("bad id"));await assertRejects(()=>scriptId.parse("../etc/passwd"));});
