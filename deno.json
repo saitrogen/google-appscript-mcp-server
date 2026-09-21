@@ -1,0 +1,18 @@
+{
+  "imports": {
+    "@modelcontextprotocol/server": "npm:@modelcontextprotocol/server@^2.0.0",
+    "zod": "npm:zod@^4.2.0"
+  },
+  "tasks": {
+    "dev": "deno run --allow-env --allow-net --unstable-kv src/main.ts",
+    "start": "deno run --allow-env --allow-net --unstable-kv src/main.ts",
+    "check": "deno check src/main.ts",
+    "test": "deno test --allow-env --allow-net --unstable-kv tests/",
+    "fmt": "deno fmt",
+    "lint": "deno lint"
+  },
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true
+  }
+}
