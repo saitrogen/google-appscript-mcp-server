@@ -25,7 +25,7 @@ export class GoogleOAuth {
     const data = await res.json() as TokenResponse & { error?: string; error_description?: string };
     if (!res.ok || !data.access_token) throw new Error(data.error_description || data.error || "Google token exchange failed");
     if (data.refresh_token) await this.store.setRefreshToken(data.refresh_token);
-    this.#accessToken = { value: data.access_token, expiresAt: Date.now() + Math.max(30, data.expires_in - 60) * 1000 };
+    this.#accessToken = { value: data.access_token, expiresAt: Date.now() + Math.max(0, data.expires_in - 60) * 1000 };
   }
   async getAccessToken(): Promise<string> {
     if (this.#accessToken && this.#accessToken.expiresAt > Date.now()) return this.#accessToken.value;
@@ -36,6 +36,6 @@ export class GoogleOAuth {
     const res = await fetch("https://oauth2.googleapis.com/token", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body });
     const data = await res.json() as TokenResponse & { error?: string; error_description?: string };
     if (!res.ok || !data.access_token) { if (data.error === "invalid_grant") await this.store.deleteRefreshToken(); throw new Error(data.error_description || data.error || "Google access-token refresh failed"); }
-    this.#accessToken = { value: data.access_token, expiresAt: Date.now() + Math.max(30, data.expires_in - 60) * 1000 }; return data.access_token;
+    this.#accessToken = { value: data.access_token, expiresAt: Date.now() + Math.max(0, data.expires_in - 60) * 1000 }; return data.access_token;
   }
 }
