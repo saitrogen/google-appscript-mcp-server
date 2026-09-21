@@ -13,6 +13,10 @@
   },
   "compilerOptions": {
     "strict": true,
-    "noImplicitOverride": true
-  }
+    "noImplicitOverride": true,
+    "types": [
+      "npm:@types/node@^24"
+    ]
+  },
+  "nodeModulesDir": "auto"
 }
