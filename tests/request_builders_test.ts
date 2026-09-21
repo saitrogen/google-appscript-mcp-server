@@ -1,0 +1,1 @@
+import{assertEquals}from"./_assert.ts";import{buildExecutionRequest,buildPaginationQuery}from"../src/helpers/request_builders.ts";Deno.test("scripts.run request",()=>assertEquals(buildExecutionRequest("f",[1],true),{function:"f",parameters:[1],devMode:true}));Deno.test("pagination",()=>assertEquals(buildPaginationQuery(50,"next"),{pageSize:50,pageToken:"next"}));
